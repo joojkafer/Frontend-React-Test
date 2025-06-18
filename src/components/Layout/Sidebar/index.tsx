@@ -35,7 +35,7 @@ const menuItems = [
   { text: "Option 5", icon: <HelpIcon />, path: "/option5" },
 ]
 
-const Sidebar = ({ open, onClose }: SidebarProps) => {
+export function Sidebar ({ open, onClose }: SidebarProps) {
   const [selectedIndex, setSelectedIndex] = useState(0)
 
   const handleListItemClick = (index: number) => {

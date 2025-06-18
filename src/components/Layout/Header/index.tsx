@@ -1,14 +1,15 @@
 "use client"
 
-import { AppBar, Toolbar, Typography, TextField, InputAdornment, IconButton, Box } from "@mui/material"
-import { Menu as MenuIcon, Search as SearchIcon, Dashboard as DashboardIcon } from "@mui/icons-material"
+import { AppBar, Toolbar, Typography, IconButton, Box } from "@mui/material"
+import { Menu as MenuIcon, Dashboard as DashboardIcon } from "@mui/icons-material"
 import { useState } from "react"
+import { SearchBar } from "../../SearchBar"
 
 interface HeaderProps {
   onMenuClick: () => void
 }
 
-const Header = ({ onMenuClick }: HeaderProps) => {
+export const Header = ({ onMenuClick }: HeaderProps) => {
   const [searchValue, setSearchValue] = useState("")
 
   return (
@@ -42,44 +43,11 @@ const Header = ({ onMenuClick }: HeaderProps) => {
           </Box>
         </Box>
 
-        {/* Right side - Search Bar */}
-        <TextField
-          size="small"
-          placeholder="Pesquisar..."
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.15)",
-            borderRadius: 1,
-            "& .MuiOutlinedInput-root": {
-              color: "white",
-              "& fieldset": {
-                borderColor: "rgba(255, 255, 255, 0.3)",
-              },
-              "&:hover fieldset": {
-                borderColor: "rgba(255, 255, 255, 0.5)",
-              },
-              "&.Mui-focused fieldset": {
-                borderColor: "rgba(255, 255, 255, 0.7)",
-              },
-            },
-            "& .MuiInputBase-input::placeholder": {
-              color: "rgba(255, 255, 255, 0.7)",
-              opacity: 1,
-            },
-            width: { xs: 200, sm: 300 },
-          }}
-          InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon sx={{ color: "rgba(255, 255, 255, 0.7)" }} />
-              </InputAdornment>
-            ),
-          }}
+        <SearchBar 
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
         />
       </Toolbar>
     </AppBar>
   )
 }
-
-export default Header

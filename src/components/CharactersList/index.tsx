@@ -5,8 +5,10 @@ import { CharacterModal } from "../CharactersModal";
 import { useMemo, useState } from "react";
 import type { Character } from "../../types/character";
 import { Pagination } from "../Pagination";
+import { useSearchContext } from "../../contexts/Search/SearchContext";
 
 export function CharacterList() {
+  const { searchValue } = useSearchContext()
   const { data = [], isLoading, error } = useGetCharacters();
   const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
     null
@@ -24,9 +26,14 @@ export function CharacterList() {
     setPage(newPage)
   }
 
+  const filteredData = 
+     data.filter((char) =>
+      char.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
   const paginatedData = useMemo(() => {
-    return data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-  }, [data, page, rowsPerPage])
+    return filteredData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+  }, [filteredData, page, rowsPerPage])
 
   if (isLoading) {
     return (
@@ -91,7 +98,7 @@ export function CharacterList() {
       </Grid>
 
       <Pagination
-        count={data.length}
+        count={filteredData.length}
         page={page}
         rowsPerPage={rowsPerPage}
         onPageChange={handleChangePage}
