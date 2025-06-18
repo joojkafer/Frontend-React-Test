@@ -9,10 +9,8 @@ import { useSearchContext } from "../../contexts/Search/SearchContext";
 
 export function CharacterList() {
   const { searchValue } = useSearchContext()
-  const { data = [], isLoading, error } = useGetCharacters();
-  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(
-    null
-  );
+  const { data = [], isLoading, error } = useGetCharacters()
+  const [selectedCharacter, setSelectedCharacter] = useState<Character | null>(null)
 
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
@@ -87,11 +85,8 @@ export function CharacterList() {
       <Grid container spacing={3}>
         {paginatedData.map((character) => (
           <Grid size={{ xs: 12, sm: 6, md: 4, lg: 3 }} key={character.name}>
-            <Box
-              onClick={() => setSelectedCharacter(character)}
-              style={{ cursor: "pointer" }}
-            >
-              <CharacterCard character={character} />
+            <Box> 
+              <CharacterCard character={character} onOpenModal={() => setSelectedCharacter(character)} />
             </Box>
           </Grid>
         ))}

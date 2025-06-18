@@ -28,11 +28,11 @@ interface SidebarProps {
 const drawerWidth = 280
 
 const menuItems = [
-  { text: "Option 1", icon: <HomeIcon />, path: "/option1" },
-  { text: "Option 2", icon: <PersonIcon />, path: "/option2" },
-  { text: "Option 3", icon: <AnalyticsIcon />, path: "/option3" },
-  { text: "Option 4", icon: <SettingsIcon />, path: "/option4" },
-  { text: "Option 5", icon: <HelpIcon />, path: "/option5" },
+  { text: "All", icon: <HomeIcon />, path: "/" },
+  { text: "Gryffindor", icon: <PersonIcon />, path: "/gryffindor" },
+  { text: "Slytherin", icon: <AnalyticsIcon />, path: "/slytherin" },
+  { text: "Ravenclaw", icon: <SettingsIcon />, path: "/ravenclaw" },
+  { text: "Hufflepuff", icon: <HelpIcon />, path: "/hufflepuff" },
 ]
 
 export function Sidebar ({ open, onClose }: SidebarProps) {

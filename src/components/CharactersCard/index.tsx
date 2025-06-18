@@ -1,5 +1,6 @@
-import { Card, CardContent, CardMedia, Typography, Chip, Box } from "@mui/material"
-import { Home as HomeIcon } from "@mui/icons-material"
+import { Card, CardContent, CardMedia, Typography, Chip, Box, IconButton } from "@mui/material"
+import { Logout, Visibility } from "@mui/icons-material"
+import { Link } from "@tanstack/react-router"
 
 interface Character {
   name: string
@@ -9,9 +10,10 @@ interface Character {
 
 interface CharacterCardProps {
   character: Character
+  onOpenModal: () => void
 }
 
-const CharacterCard = ({ character }: CharacterCardProps) => {
+const CharacterCard = ({ character, onOpenModal }: CharacterCardProps) => {
   return (
     <Card
       sx={{
@@ -29,7 +31,7 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
       <CardMedia
         component="img"
         height="400"
-        image={character.image || "../../../public/default_img.svg"}
+        image={character.image || "../../../public/iced.png"}
         alt={character.name}
         sx={{
           objectFit: "cover",
@@ -57,18 +59,32 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
           {character.name}
         </Typography>
 
-        <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-          <HomeIcon sx={{ fontSize: 18, color: "text.secondary" }} />
+        <Box sx={{ 
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "space-between" }}
+        >
           <Chip
             label={character.house || "Sem casa"}
             size="small"
-            variant={character.house ? "filled" : "outlined"}
-            color={character.house ? "primary" : "default"}
             sx={{
               fontSize: "0.75rem",
               height: 24,
             }}
           />
+          <Box sx={{display: "flex", gap: 1}}>
+            {/* Abre o modal */}
+            <IconButton onClick={onOpenModal}>
+              <Visibility />
+            </IconButton>
+
+            {/* Abre uma nova rota */}
+            <IconButton>
+              <Link to="/about">
+                <Logout/>
+              </Link>
+            </IconButton>
+          </Box>
         </Box>
       </CardContent>
     </Card>
