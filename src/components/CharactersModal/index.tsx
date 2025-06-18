@@ -36,7 +36,7 @@ export function CharacterModal({ open, onClose, character }: CharacterModalProps
                     <CardMedia
                         component="img"
                         height="400"
-                        image={character.image || "/placeholder.svg?height=200&width=300"}
+                        image={character.image || "../../../public/default_img.svg"}
                         alt={character.name}
                         sx={{
                             height: 400,

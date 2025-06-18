@@ -29,7 +29,7 @@ const CharacterCard = ({ character }: CharacterCardProps) => {
       <CardMedia
         component="img"
         height="400"
-        image={character.image || "/placeholder.svg?height=200&width=300"}
+        image={character.image || "../../../public/default_img.svg"}
         alt={character.name}
         sx={{
           objectFit: "cover",
